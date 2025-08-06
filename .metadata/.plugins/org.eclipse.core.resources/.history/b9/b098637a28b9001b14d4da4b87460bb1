@@ -1,0 +1,48 @@
+package model;
+
+public class ClassMapping {
+	
+	final int  id;
+
+	String   semesterName;
+	
+	String   quarterName;
+	
+	public ClassMapping()
+	{
+		id = 0;
+		
+		semesterName = "";
+		
+		quarterName = "";
+	}
+	
+	public ClassMapping(int id, String semesterName, String  quarterName)
+	{
+		this.id = id;
+		
+		this.semesterName = semesterName;
+		
+		this.quarterName = quarterName;
+	}
+
+	public String getSemesterName() {
+		return semesterName;
+	}
+
+	public void setSemesterName(String semesterName) {
+		this.semesterName = semesterName;
+	}
+
+	public String getQuarterName() {
+		return quarterName;
+	}
+
+	public void setQuarterName(String quarterName) {
+		this.quarterName = quarterName;
+	}
+
+	public int getId() {
+		return id;
+	}
+}

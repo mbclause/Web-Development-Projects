@@ -1,0 +1,197 @@
+package finalexam.controller;
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+import finalexam.model.Book;
+
+/**
+ * Servlet implementation class DisplayBooks
+ */
+@WebServlet(urlPatterns = "/DisplayBooks", loadOnStartup = 1)
+public class DisplayBooks extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public DisplayBooks() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		List<Book> books = new ArrayList<Book>();
+		
+		int     id = 0;
+		
+		String  name = "";
+		
+		String  genre = "";
+		
+		int    numVotes = 0;
+		
+		int     genreId = 0;
+		
+	   	Connection c = null;
+    	
+		try 
+		{
+				String url = "jdbc:mysql://cs3.calstatela.edu/cs3220stu73?useSSL=false&allowPublicKeyRetrieval=true";
+					
+				String username = "cs3220stu73";
+					
+				String password = "tHBnsQpc29Gt";
+				
+				c = DriverManager.getConnection(url, username, password);
+				
+				Statement stmt = c.createStatement();
+				
+				ResultSet rs = stmt.executeQuery("select * from books order by num_votes desc;");
+				
+				while(rs.next())
+				{
+					id = rs.getInt("id");
+					
+					name = rs.getString("name");
+					
+					genreId = rs.getInt("genre_id");
+					
+					numVotes = rs.getInt("num_votes");
+					
+					Statement stmt2 = c.createStatement();
+					
+					ResultSet rs2 = stmt2.executeQuery("select name from genres where id = " + genreId + ";");
+					
+					if(rs2.next())
+						genre = rs2.getString("name");
+					
+					books.add(new Book(id, name, genre, numVotes, genreId));
+				}
+				
+		}
+		
+		catch (SQLException e)	
+		{
+			e.printStackTrace();
+		} 
+		
+		finally 
+		{
+			try 
+			{
+				if (c != null)
+					c.close();
+			}
+			
+			catch (SQLException e) 
+			{
+				e.printStackTrace();
+			}
+		}
+		
+		request.setAttribute("books", books);
+		
+        request.getRequestDispatcher( "/WEB-INF/DisplayBooks.jsp" )
+        .forward( request, response );		
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		String  name = request.getParameter("name").trim();
+		
+		String  genre = request.getParameter("genre").trim();
+		
+		int   id = 0;
+		
+		Connection c = null;
+		
+		try 
+		{
+			String url = "jdbc:mysql://cs3.calstatela.edu/cs3220stu73?useSSL=false&allowPublicKeyRetrieval=true";
+			
+			String username = "cs3220stu73";
+			
+			String password = "tHBnsQpc29Gt";	
+			
+			c = DriverManager.getConnection(url, username, password);
+			
+			Statement stmt = c.createStatement();
+			
+			ResultSet rs = stmt.executeQuery("select id from genres where name = '" + genre + "';");
+			
+			if(rs.next())
+			{
+				id = rs.getInt("id");
+			}
+			
+			else
+			{
+				String sql2 = "insert into genres (name) values (?)";
+				
+				PreparedStatement stmt3 = c.prepareStatement(sql2, Statement.RETURN_GENERATED_KEYS);
+				
+				stmt3.setString(1, genre);
+				
+				Statement stmt4 = c.createStatement();
+				
+				ResultSet rs2 = stmt4.executeQuery("SELECT id FROM genres WHERE id=(SELECT max(id) FROM genres);");
+				
+				if(rs.next())
+					id = rs2.getInt("id");
+			}	
+			
+			String sql = "insert into books (name, genre_id, num_votes) values (?, ?, ?)";
+			
+			PreparedStatement stmt2 = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+			
+			stmt2.setString(1, name);
+			
+			stmt2.setInt(2, id);
+			
+			stmt2.setInt(3, 0);
+		} 
+		
+		catch (SQLException e)	
+		{
+			e.printStackTrace();
+		} 
+		
+		finally 
+		{
+			try 
+			{
+				if (c != null)
+					c.close();
+			}
+			
+			catch (SQLException e) 
+			{
+				e.printStackTrace();
+			}
+		}
+		
+		response.sendRedirect( "DisplayBooks" );
+	}
+
+}

@@ -1,0 +1,43 @@
+INDEX VERSION 1.131
+C:\Users\brettoboe\Desktop\michael compsci projects\web development\eclipse-files\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2306638198.index
+\Lab21\src
+C:\Users\brettoboe\Desktop\michael compsci projects\web development\eclipse-files\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3817850480.index
+\Homework2\src
+C:\Users\brettoboe\Desktop\michael compsci projects\web development\eclipse-files\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\4196415250.index
+\GuestBookJDBC\src
+C:\Users\brettoboe\Desktop\michael compsci projects\web development\eclipse-files\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2039480700.index
+\Lecture Code\src
+C:\Users\brettoboe\Desktop\michael compsci projects\web development\eclipse-files\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2963865508.index
+\Lecture Code\src
+C:\Users\brettoboe\Desktop\michael compsci projects\web development\eclipse-files\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2986927083.index
+\Lab18\src
+C:\Users\brettoboe\Desktop\michael compsci projects\web development\eclipse-files\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3466040266.index
+\Lab17\src
+C:\Users\brettoboe\Desktop\michael compsci projects\web development\eclipse-files\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2263416118.index
+\Homework3\src
+C:\Users\brettoboe\Desktop\michael compsci projects\web development\eclipse-files\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3842629241.index
+\GuestBookJDBC\src
+C:\Users\brettoboe\Desktop\michael compsci projects\web development\eclipse-files\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\982226110.index
+\Homework1\src
+C:\Users\brettoboe\Desktop\michael compsci projects\web development\eclipse-files\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1291652068.index
+\cs3220-jersey\src\main\java
+C:\Users\brettoboe\Desktop\michael compsci projects\web development\eclipse-files\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2193287217.index
+\Ajax\src
+C:\Users\brettoboe\Desktop\michael compsci projects\web development\eclipse-files\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2025019915.index
+\Final\src
+C:\Users\brettoboe\Desktop\michael compsci projects\web development\eclipse-files\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3000375629.index
+\Lab17\src
+C:\Users\brettoboe\Desktop\michael compsci projects\web development\eclipse-files\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2884675724.index
+\Lab16\src
+C:\Users\brettoboe\Desktop\michael compsci projects\web development\eclipse-files\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2983207474.index
+\Lab13\src
+C:\Users\brettoboe\Desktop\michael compsci projects\web development\eclipse-files\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3490255006.index
+\webtest\src
+C:\Users\brettoboe\Desktop\michael compsci projects\web development\eclipse-files\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2155509907.index
+\Lab13\src
+C:\Users\brettoboe\Desktop\michael compsci projects\web development\eclipse-files\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\73000262.index
+\Lab15\src
+C:\Users\brettoboe\Desktop\michael compsci projects\web development\eclipse-files\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1456008824.index
+\Midterm\src
+C:\Users\brettoboe\Desktop\michael compsci projects\web development\eclipse-files\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\738100572.index
+\PracticeFinal\src

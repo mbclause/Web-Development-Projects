@@ -1,0 +1,185 @@
+package controller;
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+import model.Course;
+
+
+/**
+ * Servlet implementation class CreateMapping
+ */
+@WebServlet("/CreateMapping")
+public class CreateMapping extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public CreateMapping() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		List<Course> semesterCourses = new ArrayList<Course>();
+		
+		List<Course> quarterCourses = new ArrayList<Course>();
+		
+	   	Connection c = null;
+    	
+			try 
+			{
+					String url = "jdbc:mysql://cs3.calstatela.edu/cs3220stu73?useSSL=false&allowPublicKeyRetrieval=true";
+					
+					String username = "cs3220stu73";
+					
+					String password = "tHBnsQpc29Gt";
+				
+					c = DriverManager.getConnection(url, username, password);
+					
+					Statement stmt = c.createStatement();
+					
+					Statement stmt2 = c.createStatement();
+					
+					ResultSet rs = stmt.executeQuery("select * from semester_courses where is_mapped = 0;");
+					
+					while(rs.next())
+					{
+						semesterCourses.add(new Course(rs.getInt("id"), rs.getString("name"), true, true));
+					}
+					
+					ResultSet rs2 = stmt2.executeQuery("select * from quarter_courses where is_mapped = 0;");
+					
+					while(rs2.next())
+					{
+						quarterCourses.add(new Course(rs2.getInt("id"), rs2.getString("name"), false, true));
+					}
+					
+			}
+			
+			catch (SQLException e)	
+			{
+				e.printStackTrace();
+			} 
+			
+			finally 
+			{
+				try 
+				{
+					if (c != null)
+						c.close();
+				}
+				
+				catch (SQLException e) 
+				{
+					e.printStackTrace();
+				}
+			}
+			
+			request.setAttribute("semesterCourses", semesterCourses);
+			
+			request.setAttribute("quarterCourses", quarterCourses);
+			
+	        request.getRequestDispatcher( "/WEB-INF/CreateMapping.jsp" )
+            .forward( request, response );	
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		String quarterCourse = request.getParameter("quarter").trim();
+		
+		String semesterCourse = request.getParameter("quarter").trim();
+		
+		int  quarterId = 0;
+		
+		int  semesterId = 0;
+		
+		Connection c = null;
+		
+		try 
+		{
+			String url = "jdbc:mysql://cs3.calstatela.edu/cs3220stu73?useSSL=false&allowPublicKeyRetrieval=true";
+			
+			String username = "cs3220stu73";
+			
+			String password = "tHBnsQpc29Gt";	
+			
+			c = DriverManager.getConnection(url, username, password);
+			
+			Statement stmt = c.createStatement();
+			
+			ResultSet rs = stmt.executeQuery("select id from quarter_courses where name = '" + quarterCourse + "';");
+			
+			if(rs.next())
+				quarterId = rs.getInt("id");
+			
+			Statement stmt2 = c.createStatement();
+			
+			ResultSet rs2 = stmt2.executeQuery("select id from semester_courses where name = '" + semesterCourse + "';");
+			
+			if(rs2.next())
+				semesterId = rs2.getInt("id");
+			
+			String sql = "insert into course_mappings values (quarter_course_id, semester_course_id) values (?, ?);";
+			
+			PreparedStatement stmt3 = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+			
+			stmt3.setInt(1, quarterId);
+			
+			stmt3.setInt(2, semesterId);
+			
+			stmt3.executeUpdate();	
+			
+			Statement stmt4 = c.createStatement();
+			
+			stmt4.executeUpdate("update quarter_courses set is_mapped = 1 where id = " + quarterId + ";");
+			
+			Statement stmt5 = c.createStatement();
+			
+			stmt5.executeUpdate("update semester_courses set is_mapped = 1 where id = " + semesterId + ";");
+		} 
+			
+			catch (SQLException e)	
+			{
+				e.printStackTrace();
+			} 
+			
+			finally 
+			{
+				try 
+				{
+					if (c != null)
+						c.close();
+				}
+				
+				catch (SQLException e) 
+				{
+					e.printStackTrace();
+				}
+			}
+		
+		response.sendRedirect( "DisplayCourses" );
+	}
+
+}

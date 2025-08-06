@@ -1,0 +1,27 @@
+
+
+body {
+    height: 270px;
+    width: 330px;
+    border: solid black 1px;
+    box-sizing: border-box;
+    padding: 20px 5px 5px; 
+}
+
+body form div {
+    padding: 5px;
+}
+
+body form div span:nth-child(2) {
+    position: absolute;
+    left: 150px;
+}
+
+h1 {
+    font-size: 20pt;
+    padding: 0px 5px;
+}
+
+a {
+    text-decoration: none;
+}

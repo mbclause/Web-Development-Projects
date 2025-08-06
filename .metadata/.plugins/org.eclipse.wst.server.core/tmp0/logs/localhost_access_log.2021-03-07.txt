@@ -1,0 +1,9 @@
+127.0.0.1 - - [07/Mar/2021:15:33:57 -0800] "GET / HTTP/1.1" 404 751
+0:0:0:0:0:0:0:1 - - [07/Mar/2021:15:34:02 -0800] "GET /GuestBook/ HTTP/1.1" 404 765
+0:0:0:0:0:0:0:1 - - [07/Mar/2021:15:34:29 -0800] "GET /GuestBook/Display HTTP/1.1" 200 840
+0:0:0:0:0:0:0:1 - - [07/Mar/2021:15:34:33 -0800] "GET /GuestBook/AddComment HTTP/1.1" 200 623
+0:0:0:0:0:0:0:1 - - [07/Mar/2021:15:38:05 -0800] "GET /GuestBook/Display HTTP/1.1" 200 840
+0:0:0:0:0:0:0:1 - - [07/Mar/2021:15:57:54 -0800] "GET /GuestBook/AddComment HTTP/1.1" 200 623
+0:0:0:0:0:0:0:1 - - [07/Mar/2021:15:57:55 -0800] "GET /GuestBook/Display HTTP/1.1" 200 840
+0:0:0:0:0:0:0:1 - - [07/Mar/2021:15:58:14 -0800] "GET /GuestBook/EditComment?id=3 HTTP/1.1" 200 696
+0:0:0:0:0:0:0:1 - - [07/Mar/2021:15:58:16 -0800] "GET /GuestBook/Display HTTP/1.1" 200 840

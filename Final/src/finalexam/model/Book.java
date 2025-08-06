@@ -1,0 +1,84 @@
+package finalexam.model;
+
+public class Book {
+
+	int   id;
+	
+	String   name;
+	
+	String   genre;
+	
+	int   numVotes;
+	
+	int   genreId;
+	
+	public Book()
+	{
+		id = 0;
+		
+		name = "";
+		
+		genre="";
+		
+		genreId = 0;
+		
+		numVotes = 0;
+	}
+	
+	public Book(int id, String name, String genre, int genreId, int numVotes)
+	{
+		this.id = id;
+		
+		this.name = name;
+		
+		this.genre = genre;
+		
+		this.numVotes = numVotes;
+		
+		this.genreId = genreId;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getGenre() {
+		return genre;
+	}
+
+	public void setGenre(String genre) {
+		this.genre = genre;
+	}
+
+	public int getNumVotes() {
+		return numVotes;
+	}
+
+	public void setNumVotes(int numVotes) {
+		this.numVotes = numVotes;
+	}
+
+	public int getGenreId() {
+		return genreId;
+	}
+
+	public void setGenreId(int genreId) {
+		this.genreId = genreId;
+	}
+
+
+
+
+}

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<!-- saved from url=(0051)http://cs3.calstatela.edu/~cguo/cs3220/lab/Add.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>Add</title>
+<script src="./Add_files/jquery-3.2.1.min.js.download"></script>
+<script>
+    $(function(){
+        $("#add").click(function(){
+            var answer = Number($("input[name='x']").val()) + Number($("input[name='y']").val());
+
+            $("#sum").html(answer);
+        });
+    });
+</script>
+</head>
+<body>
+    <input type="text" name="x"> + <input type="text" name="y"> = <span id="sum">0</span>
+    <p><button id="add">Add</button></p>
+</body></html>

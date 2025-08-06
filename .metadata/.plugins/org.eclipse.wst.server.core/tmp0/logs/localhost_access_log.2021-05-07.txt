@@ -1,0 +1,8 @@
+127.0.0.1 - - [07/May/2021:15:26:27 -0700] "GET / HTTP/1.1" 404 751
+0:0:0:0:0:0:0:1 - - [07/May/2021:15:26:27 -0700] "GET /Homework2/ HTTP/1.1" 404 765
+0:0:0:0:0:0:0:1 - - [07/May/2021:15:26:37 -0700] "GET /Homework2/DisplayForums HTTP/1.1" 200 1653
+0:0:0:0:0:0:0:1 - - [07/May/2021:15:26:39 -0700] "GET /Homework2/DisplayTopics?id=1 HTTP/1.1" 200 1591
+0:0:0:0:0:0:0:1 - - [07/May/2021:15:26:45 -0700] "GET /Homework2/AddTopic HTTP/1.1" 200 2182
+0:0:0:0:0:0:0:1 - - [07/May/2021:15:26:50 -0700] "POST /Homework2/AddTopic HTTP/1.1" 302 -
+0:0:0:0:0:0:0:1 - - [07/May/2021:15:26:50 -0700] "GET /Homework2/DisplayTopics?id=1 HTTP/1.1" 200 1751
+0:0:0:0:0:0:0:1 - - [07/May/2021:15:26:54 -0700] "GET /Homework2/DisplayPosts?topID=1 HTTP/1.1" 200 2372

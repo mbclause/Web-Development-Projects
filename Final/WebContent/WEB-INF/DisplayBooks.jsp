@@ -1,0 +1,32 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>DisplayBooks</title>
+</head>
+<body>
+	<table border="1">
+		<tr>
+			<th>Book</th>
+			<th>Genre</th>
+			<th>Votes</th>
+		</tr>
+		<c:forEach items="${books}" var="book">
+			<tr>
+				<td>${book.getName()}</td>
+				<td><a href="DisplayGenre?id=${book.getGenreId()}&genre=${book.getGenre()}">${book.getGenre()}</a></td>
+				<td><a href="IncrementVotes?bookId=${book.getId()}">${book.getNumVotes()}</a></td>
+			</tr>
+		</c:forEach>
+		<tr>
+			<form action="DisplayBooks" method="post">
+				<td><input type="text" name="name"></td>
+				<td><input type="text" name="genre"></td>
+				<td><input type="submit" name="add" value="Add" /></td>
+			</form> 
+		</tr>
+	</table>
+</body>
+</html>

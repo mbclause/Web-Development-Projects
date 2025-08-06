@@ -1,0 +1,48 @@
+package model;
+
+public class Course {
+
+	final int    id;
+	
+	String       name;
+	
+	boolean		isSemester;
+	
+	public  Course()
+	{
+		id = 0;
+		
+		name = "";
+		
+		isSemester = false;
+	}
+	
+	public Course(int  id, String name, boolean  isSemester)
+	{
+		this.id = id;
+		
+		this.name = name;
+		
+		this.isSemester = isSemester;
+	}
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public boolean isSemester() {
+		return isSemester;
+	}
+
+	public void setSemester(boolean isSemester) {
+		this.isSemester = isSemester;
+	}
+
+	public int getId() {
+		return id;
+	}	
+}

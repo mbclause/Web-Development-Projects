@@ -1,0 +1,45 @@
+[id="top menu"] {
+    color: white;
+    text-align: right;
+    background-color: black;
+    font-size: 75%;
+}
+
+[name="separator"]{
+    color: gold;
+}
+
+[name="logo"]{
+    vertical-align: middle;
+}
+
+#header{
+    font-size: 32pt;
+}
+
+#menu2{
+    background-color: gold;
+    text-align: left;
+    text-transform: uppercase;
+}
+
+h2{
+    font-weight: bold;
+    font-size: 24pt;
+}
+
+[name="title"]{
+    font-weight: bold;
+    font-size: 15pt;
+}
+
+p{
+    text-indent: 40px;
+}
+
+footer{
+    text-align: center;
+    background-color: black;
+    color: white;
+    font-size: 75%;
+}

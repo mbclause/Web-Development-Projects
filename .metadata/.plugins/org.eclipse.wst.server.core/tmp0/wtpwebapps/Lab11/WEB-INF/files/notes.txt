@@ -1,0 +1,116 @@
+getParameter is a member function of an HTTPServletRequest object always called "request"
+
+getAttribute is a member function of a ServletContext object
+
+
+
+
+
+
+
+ServletRequest:
+
+Defines an object to provide client request information to a servlet. The servlet container creates a ServletRequest object and passes it as an argument to the servlet's service method.
+
+A ServletRequest object provides data including parameter name and values, attributes, and an input stream. Interfaces that extend ServletRequest can provide additional protocol-specific data (for example, HTTP data is provided by HttpServletRequest.
+
+https://docs.oracle.com/javaee/6/api/javax/servlet/ServletRequest.html
+
+
+
+
+
+
+
+
+HTTPServletRequest:
+
+Extends the ServletRequest interface to provide request information for HTTP servlets.
+
+The servlet container creates an HttpServletRequest object and passes it as an argument to the servlet's service methods (doGet, doPost, etc).
+
+https://docs.oracle.com/javaee/6/api/javax/servlet/http/HttpServletRequest.html
+
+
+
+
+
+
+
+
+
+ServletContext:
+
+Defines a set of methods that a servlet uses to communicate with its servlet container, for example, to get the MIME type of a file, dispatch requests, or write to a log file.
+
+There is one context per "web application" per Java Virtual Machine. (A "web application" is a collection of servlets and content installed under a specific subset of the server's URL namespace such as /catalog and possibly installed via a .war file.)
+
+In the case of a web application marked "distributed" in its deployment descriptor, there will be one context instance for each virtual machine. In this situation, the context cannot be used as a location to share global information (because the information won't be truly global). Use an external resource like a database instead.
+
+The ServletContext object is contained within the ServletConfig object, which the Web server provides the servlet when the servlet is initialized.
+
+https://tomcat.apache.org/tomcat-5.5-doc/servletapi/javax/servlet/ServletContext.html
+
+
+
+
+
+
+
+ServletConfig:
+
+A servlet configuration object used by a servlet container to pass information to a servlet during initialization.
+
+https://tomcat.apache.org/tomcat-5.5-doc/servletapi/javax/servlet/ServletConfig.html
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+HTTP Get Method:
+
+The HTTP GET method requests a representation of the specified resource. Requests using GET should only be used to request data (they shouldn't include data).
+
+
+
+
+
+
+
+
+
+
+HTTP Post method:
+
+The HTTP POST method sends data to the server. The type of the body of the request is indicated by the Content-Type header.
+
+The difference between PUT and POST is that PUT is idempotent: calling it once or several times successively has the same effect (that is no side effect), where successive identical POST may have additional effects, like passing an order several times.
+
+A POST request is typically sent via an HTML form and results in a change on the server. In this case, the content type is selected by putting the adequate string in the enctype attribute of the <form> element or the formenctype attribute of the <input> or <button> elements:
+
+application/x-www-form-urlencoded: the keys and values are encoded in key-value tuples separated by '&', with a '=' between the key and the value. Non-alphanumeric characters in both keys and values are percent encoded: this is the reason why this type is not suitable to use with binary data (use multipart/form-data instead)
+multipart/form-data: each value is sent as a block of data ("body part"), with a user agent-defined delimiter ("boundary") separating each part. The keys are given in the Content-Disposition header of each part.
+text/plain
+When the POST request is sent via a method other than an HTML form — like via an XMLHttpRequest — the body can take any type. As described in the HTTP 1.1 specification, POST is designed to allow a uniform method to cover the following functions:
+
+Annotation of existing resources
+Posting a message to a bulletin board, newsgroup, mailing list, or similar group of articles;
+Adding a new user through a signup modal;
+Providing a block of data, such as the result of submitting a form, to a data-handling process;
+Extending a database through an append operation.
+
+
+
+
+
+

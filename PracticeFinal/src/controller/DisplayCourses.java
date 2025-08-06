@@ -1,0 +1,154 @@
+package controller;
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+import model.Course;
+import model.CourseMapping;
+
+/**
+ * Servlet implementation class DisplayCourses
+ */
+@WebServlet("/DisplayCourses")
+public class DisplayCourses extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public DisplayCourses() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		List<Course> semesterCourses = new ArrayList<Course>();
+		
+		List<Course> quarterCourses = new ArrayList<Course>();
+		
+		List<CourseMapping> mappings = new ArrayList<CourseMapping>();
+		
+		int  isMapped = 1;
+		
+		int  mapId = 0;
+		
+		String  quarterName = "";
+		
+		String  semesterName = "";
+		
+		int   id = 0;
+		
+	   	Connection c = null;
+    	
+			try 
+			{
+					String url = "jdbc:mysql://cs3.calstatela.edu/cs3220stu73?useSSL=false&allowPublicKeyRetrieval=true";
+					
+					String username = "cs3220stu73";
+					
+					String password = "tHBnsQpc29Gt";
+				
+					c = DriverManager.getConnection(url, username, password);
+					
+					Statement stmt = c.createStatement();
+					
+					Statement stmt2 = c.createStatement();
+					
+					Statement stmt3 = c.createStatement();
+					
+					ResultSet rs = stmt.executeQuery("select * from quarter_courses;");
+					
+					while(rs.next())
+					{
+						quarterCourses.add(new Course(rs.getInt("id"), rs.getString("name"), false, isMapped == rs.getInt("is_mapped")));
+							
+					}
+					
+					ResultSet rs2 = stmt2.executeQuery("select * from semester_courses;");
+					
+					while(rs2.next())
+					{
+						semesterCourses.add(new Course(rs2.getInt("id"), rs2.getString("name"), true, isMapped == rs2.getInt("is_mapped")));
+					}
+					
+					ResultSet rs3 = stmt3.executeQuery("select * from course_mappings;");
+					
+					while(rs3.next())
+					{
+						mapId = rs3.getInt("id");
+						
+						id = rs3.getInt("quarter_course_id");
+						
+						for(Course course : quarterCourses)
+						{
+							if(course.getId() == id)
+								quarterName = course.getName();
+						}
+						
+						id = rs3.getInt("semester_course_id");
+						
+						for(Course course : semesterCourses)
+						{
+							if(course.getId() == id)
+								semesterName = course.getName();
+						}
+						
+						mappings.add(new CourseMapping(mapId, quarterName, semesterName));
+					}
+					
+			}
+			
+			catch (SQLException e)	
+			{
+				e.printStackTrace();
+			} 
+			
+			finally 
+			{
+				try 
+				{
+					if (c != null)
+						c.close();
+				}
+				
+				catch (SQLException e) 
+				{
+					e.printStackTrace();
+				}
+			}
+						
+			request.setAttribute("semesterCourses", semesterCourses);
+			
+			request.setAttribute("quarterCourses", quarterCourses);
+			
+			request.setAttribute("courseMappings", mappings);
+			
+	        request.getRequestDispatcher( "/WEB-INF/DisplayCourses.jsp" )
+            .forward( request, response );		
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+
+}

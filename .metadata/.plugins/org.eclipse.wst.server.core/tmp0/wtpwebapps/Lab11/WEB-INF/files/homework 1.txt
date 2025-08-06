@@ -1,0 +1,64 @@
+		
+public class Forum {
+
+private String   name;
+
+private int   numTopics;
+
+private  int  final forumID;
+
+public Forum() {
+    id = 0;
+    name = "";
+    comment = "";
+}
+
+public void increaseNumTopics() {
+    numTopics++;
+}
+
+
+}
+
+
+
+
+
+
+
+public class Topic {
+
+String  name;
+
+String   author;
+
+int    numReplies;
+
+Date   lastPost;
+
+int  topicID;
+
+
+
+
+}
+
+
+
+
+
+
+public class Post {
+
+String  author;
+
+String  content;
+
+Date   postedOn;
+
+int    postID;
+
+
+
+
+}
