@@ -107,7 +107,6 @@ This repository contains a wide range of web development assignments and labs co
 
 - Oracle Java Servlet API
 - StackOverflow (for debugging)
-- ChatGPT (used occasionally to clarify syntax or trace errors)
 - Instructor office hours and email support
 
 ---
